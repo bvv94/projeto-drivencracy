@@ -3,7 +3,7 @@ import { db } from "../database/database.config.js"
 export async function createPoll(req, res) {
 
     const { title, expireAt } = req.body
-    console.log(req.body)
+
     try {
         const poll = {
             title: title,
