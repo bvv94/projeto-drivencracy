@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb"
 import { db } from "../database/database.config.js"
 
 export async function createPoll(req, res) {
@@ -29,8 +30,13 @@ export async function getPoll(req, res) {
 }
 
 export async function pollChoice(req, res) {
+    const { id } = req.params
+    console.log(id)
     try {
+        const choices = await db.collection("choices").find({ pollId: id }).toArray()
+        if (!choices) return res.status(404).send("Enquete Inexistente!")
 
+        res.send(choices)
     }
     catch (err) {
         res.status(500).send(err.message)
