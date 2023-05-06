@@ -2,7 +2,5 @@ import joi from "joi"
 
 export const pollSchema = joi.object({
   title: joi.string().min(1).required(),
-  expireAt: joi.date().iso().optional()
+  expireAt: joi.string().isoDate().allow('')
 })
-
-
